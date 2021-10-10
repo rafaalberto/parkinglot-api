@@ -12,8 +12,17 @@ export default class EnterParkingLotUseCase {
   async execute (code: string, plate: string, date: Date): Promise<ParkingLot> {
     const parkingLot = await this.parkingLotRepository.getParkintLot(code)
     const parkedCar = new ParkedCar(code, plate, date)
-    if (!parkingLot.isOpen(parkedCar.date)) { throw new Error('ParkingLot is closed') }
+    this.validations(parkingLot, parkedCar)
     await this.parkingLotRepository.parkCar(parkedCar.code, parkedCar.plate, parkedCar.date)
     return parkingLot
+  }
+
+  private validations (parkingLot: ParkingLot, parkedCar: ParkedCar) {
+    if (!parkingLot.isOpen(parkedCar.date)) {
+      throw new Error('Parking Lot is closed')
+    }
+    if (parkingLot.isFull()) {
+      throw new Error('Parking Lot is full')
+    }
   }
 }
