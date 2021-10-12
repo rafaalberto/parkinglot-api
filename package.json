@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "main": "tsc && node ./dist/src/index.js",
-    "test": "tsc && jest ./dist"
+    "test": "tsc && jest ./dist",
+    "express": "tsc && node ./dist/src/infra/http/express.js",
+    "hapi": "tsc && node ./dist/src/infra/http/hapi.js"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +25,8 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
+    "@hapi/hapi": "^20.2.1",
+    "express": "^4.17.1",
     "pg-promise": "^10.11.0"
   }
 }
