@@ -3,7 +3,7 @@ import HapiAdapter from '../../adapter/HapiAdapter'
 import ParkingLotController from '../../controller/ParkingLotController'
 
 const server = Hapi.server({
-  port: 3001,
+  port: 3000,
   host: 'localhost'
 })
 
